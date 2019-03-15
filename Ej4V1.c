@@ -12,7 +12,7 @@ int  main() {
 
     waitpid(-1,&status,0);
     printf("padre Pid:%d \n" ,getpid());
-    printf("Estado de salida del hijo=%d \n",status );
+    printf("Estado de salida del hijo=%d  \n",status );
 	}
 	return 0;
 }
