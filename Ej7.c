@@ -16,7 +16,7 @@ void sigmanager(int sig_num) {
     printf("asdasd\n");
   } else {
     if (sig_num == SIGTERM) {
-      printf("Enviando seña l al hijo\n");
+      printf("Enviando señaal al hijo\n");
       kill(pid, sig_num);
     }
   }
