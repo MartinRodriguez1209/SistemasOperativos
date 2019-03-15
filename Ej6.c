@@ -1,32 +1,28 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 
-void sigmanager(int sig_num) {
-	/* Reasignar la señal */
-	signal(sig_num, sigmanager);
+int main() {
+  pid_t pid;
+  int status;
 
-
-  if(sig_num ==SIGTSTP){
-    exit(sig_num);
+  pid = fork();
+  if (pid == 0) {
+    printf("hijo Pid:%d\n", getpid());
+    while (1) {
+      /* code */
     }
-    else{
-      printf("Señal recibida\n");
+  } else {
+    waitpid(-1, &status, 0);
+    printf("kill al hijo\n");
+    if (WIFEXITED(status)) {
+      printf("Estado de salida del hijo=%d  \n", WEXITSTATUS(status));
     }
-    fflush(stdout);
+    if (WIFSIGNALED(status)) {
+      printf("Hijo termino por una señal:%d\n", WTERMSIG(status));
+    }
   }
-
-
-
-  int main() {
-
-    signal(SIGINT, sigmanager);//ctrl+c signal from keyboard
-    signal(SIGTSTP, sigmanager);//ctrl+z signal stop type terminal
-    while(1){
-      printf("Programa esperando señal\n" );
-      sleep(4);
-    }
-
-    return 0;
-  }
+  return 0;
+}
