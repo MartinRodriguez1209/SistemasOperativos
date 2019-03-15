@@ -21,8 +21,8 @@ void sigmanager(int sig_num) {
 
   int main() {
 
-    signal(SIGINT, sigmanager);//signal from keyboard
-    signal(SIGTSTP, sigmanager);//signal stop type terminal
+    signal(SIGINT, sigmanager);//ctrl+c signal from keyboard
+    signal(SIGTSTP, sigmanager);//ctrl+z signal stop type terminal
     while(1){
       printf("Programa esperando señal\n" );
       sleep(4);
