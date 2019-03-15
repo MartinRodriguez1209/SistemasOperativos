@@ -19,12 +19,7 @@ void sigmanager(int sig_num) {
     fflush(stdout);
   }
 
-  void sigmanager2(int sig_num,pid_t pid) {
-  	/* Reasignar la señal */
-  	signal(sig_num, sigmanager);
-    kill(pid, sig_num);
-      fflush(stdout);
-    }
+
 
 int  main() {
   pid_t pid;
@@ -33,10 +28,10 @@ int  main() {
 	if (pid == 0){
     signal(SIGINT, sigmanager);//ctrl+c signal from keyboard
     signal(SIGTSTP, sigmanager);//ctrl+z
-    sleep(1);
+    
   } else{
-    signal(SIGINT, sigmanager2);//ctrl+c signal from keyboard
-    signal(SIGTSTP, sigmanager2);//ctrl+z
+    kill(pid,signal(SIGINT,sigmanager));
+		kill(pid,signal(SIGTSTP,sigmanager));
     while (1) {
     };
   }
