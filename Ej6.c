@@ -10,7 +10,7 @@ int main() {
 
   pid = fork();
   if (pid == 0) {
-    printf("hijo Pid:%d\n", getpid());
+    printf("hijo  Pid:%d\n", getpid());
     while (1) {
       /* code */
     }
