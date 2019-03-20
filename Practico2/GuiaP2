@@ -1,0 +1,33 @@
+Sistemas Operativos - Practico Comunicación
+-------------------------------------------
+
+Comunicacion sencilla entre procesos por medio de tuberias (pipes) con nombre y sin nombre.
+Investigue la llamada al sistema  pipe() y el comando mkfifo.
+
+Ejemplo: Copia de archivos con tuberías
+
+0) Escriba un programa que imprima todos sus
+argumentos de línea de comando
+
+1) Cree una tubería con nombre utilizando mkfifo
+
+2) En dos consolas 'envíe' el contenido de un archivo desde
+una consola a otra
+
+3) Escriba un programa que copie el contenido de un archivo
+dentro de otro, similar al comando cp
+Origen y destino deben ser recibidos por linea de comando.
+Utilice las llamadas al sistema open(), read() y write().
+
+4) Escriba un programa que copie el contenido de un archivo,
+cuyo nombre debe recibir por línea de comando, dentro de una
+tubería con nombre. Escriba otro que lea de la tubería y
+guarde los datos en un archivo final.
+
+Imagine un procedimiento para transmitir el nombre del archivo
+destino en primer lugar, luego almacene alli el resultado
+
+4) Idem anterior (en cuanto a funcionalidad) pero usando un solo
+programa que cree dos hijos y utilicen pipes sin nombre.
+
+5) Suba al repositorio en una carpeta llamada Comunication
