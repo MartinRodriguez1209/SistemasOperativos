@@ -1,26 +1,30 @@
+#include <fcntl.h>
 #include <stdio.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 int main(int argc, char **argv) {
 
   for (size_t i = 1; i < argc; i++) {
   }
 
-  FILE *filein;
-  FILE *fileout;
   char buffer[100];
   char c;
+  int count;
 
-  filein = fopen("/home/mrodriguez/Documentos/Sistemas "
-                 "Operativos/git/SistemasOperativos/Practico2/textin",
-                 "r");
-  fileout = fopen("/home/mrodriguez/Documentos/Sistemas "
-                  "Operativos/git/SistemasOperativos/Practico2/textout",
-                  "w");
+  int fr = open("/home/mrodriguez/Documentos/Sistemas "
+                "Operativos/git/SistemasOperativos/Practico2/textin",
+                O_RDONLY);
 
-  while ((c = fgetc(filein)) != EOF) {
-    fputc(c, fileout);
+  int fw = open("/home/mrodriguez/Documentos/Sistemas "
+                "Operativos/git/SistemasOperativos/Practico2/textout",
+                O_WRONLY);
+
+  while ((count = read(fr, buffer, 100)) > 0) {
+    write(fw, buffer, count);
   }
-  fclose(filein);
-  fclose(fileout);
-  printf("\n");
+
+  close(fw);
+  close(fr);
 }
